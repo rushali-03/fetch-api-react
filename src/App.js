@@ -5,7 +5,7 @@ import {fetchTodos} from './actions/action'
 
 function App() {
   const todos = useSelector(state => state.todos) || {};
-  const todoLoading = todos.Loading;
+  const todoLoading = todos.loading;
   const dispatch = useDispatch();
 
   const onFetchTodos = () => { 
