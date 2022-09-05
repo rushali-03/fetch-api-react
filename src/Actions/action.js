@@ -1,13 +1,26 @@
-import {FETCH_TODOS } from "./types"
+import { GET_TODOS_FAILURE, GET_TODOS_REQUEST, GET_TODOS_SUCCESS } from "./types"
 
-export const fetchData = (props) => {
-  return (dispatch) => {
-    props.setLoading(true);
+export const getTodosRequest = (data) => ({//setLoadingState(true/false)
+  type: GET_TODOS_REQUEST,
+  payload: data
+})
+
+export const getTodosSuccess = (data) => ({
+  type: GET_TODOS_SUCCESS,
+  payload: data
+})
+
+export const getTodosFailure = (data) => ({
+  type: GET_TODOS_FAILURE,
+  payload: data
+})
+
+export const fetchTodos = (dispatch) => { 
+  dispatch(getTodosRequest());
+  return () => {
     return fetch('https://jsonplaceholder.typicode.com/todos')
-      .then(response => response.json())
-      .then(data => {dispatch({
-        type: FETCH_TODOS, data
-      }) ;props.setLoading(false)})
-      .catch(console.log())
+      .then(response => response.json()) 
+      .then(data => dispatch(getTodosSuccess(data))) 
+      .catch(err => dispatch(getTodosFailure(err))) 
   }
 }
