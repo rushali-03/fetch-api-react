@@ -1,6 +1,6 @@
 import { GET_TODOS_FAILURE, GET_TODOS_REQUEST, GET_TODOS_SUCCESS } from "./types"
 
-export const getTodosRequest = (data) => ({//setLoadingState(true/false)
+export const getTodosRequest = (data) => ({
   type: GET_TODOS_REQUEST,
   payload: data
 })
